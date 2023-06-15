@@ -176,6 +176,15 @@ def remove_instructor():
     else:
         print(name_in, 'Does not exist')
 
+
+def update_admin():
+    name_in = input("Who are you editing: ")
+    new_title = input("Input new title: ")
+    select_query = 'UPDATE admin SET title = "{}" WHERE name ="{}"'.format(new_title, name_in)
+    cursor.execute(select_query)
+    conn.commit()
+    print(name_in, ' Successfully updated to ', new_title)
+
 # ===========================
 # Main program loop
 # ===========================
@@ -214,7 +223,8 @@ while True:
           '[2] - Insert\n'
           '[3] - Print\n'
           '[4] - Delete\n'
-          '[5] - Exit\n')
+          '[5] - Edit\n'
+          '[6] - Exit\n')
 
     option = int(input(''))
 
@@ -310,6 +320,9 @@ while True:
                 print('Invalid! Try again')
 
     elif option == 5:
+        update_admin()
+    elif option == 6:
         break
+
     else:
         print('Invalid! Try again')
